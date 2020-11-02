@@ -12,10 +12,10 @@ script:
   - docker-compose exec --env 'RAILS_ENV=test' web rails test
 
 deploy:
-  docker: script
+  provider: script
 
   script:
-    docker build -t registry.heroku.com/production-117/web -f Dockerfile.prod . ;
+    docker build -t registry.heroku.com/production-117/web -f Dockerfile.prod .;
     docker push registry.heroku.com/production-117/web;
     heroku run --app production-117 rails db:migrate;
   
